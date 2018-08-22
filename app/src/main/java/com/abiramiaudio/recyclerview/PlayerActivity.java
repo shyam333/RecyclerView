@@ -2,11 +2,13 @@ package com.abiramiaudio.recyclerview;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 
-public class PlayerActivity extends YouTubeFailureRecoveryActivity{
+public class PlayerActivity extends YouTubeFailureRecoveryActivity {
 
     private YouTubePlayerView playerView;
     private YouTubePlayer player;
@@ -15,6 +17,8 @@ public class PlayerActivity extends YouTubeFailureRecoveryActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.youtube_player);
         playerView = (YouTubePlayerView) findViewById(R.id.player);

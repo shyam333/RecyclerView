@@ -10,12 +10,18 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubeThumbnailLoader;
+import com.google.android.youtube.player.YouTubeThumbnailView;
+
 import java.util.List;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> implements YouTubeThumbnailView.OnInitializedListener {
 
     Context context;
     List<Book>mData;
+    private YouTubeThumbnailView youTubeThumbnailView;
+    private YouTubeThumbnailLoader youTubeThumbnailLoader;
 
     public MyAdapter(Context context, List<Book> mData) {
         this.context = context;
@@ -55,6 +61,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public int getItemCount() {
         return mData.size();
+    }
+
+    @Override
+    public void onInitializationSuccess(YouTubeThumbnailView youTubeThumbnailView, YouTubeThumbnailLoader youTubeThumbnailLoader) {
+
+    }
+
+    @Override
+    public void onInitializationFailure(YouTubeThumbnailView youTubeThumbnailView, YouTubeInitializationResult youTubeInitializationResult) {
+
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
