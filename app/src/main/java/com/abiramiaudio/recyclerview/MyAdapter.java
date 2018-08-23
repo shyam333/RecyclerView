@@ -20,8 +20,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
 
     Context context;
     List<Book>mData;
-    private YouTubeThumbnailView youTubeThumbnailView;
-    private YouTubeThumbnailLoader youTubeThumbnailLoader;
+   // InterstitialAd interstitialAd;
+//    private YouTubeThumbnailView youTubeThumbnailView;
+//    private YouTubeThumbnailLoader youTubeThumbnailLoader;
 
     public MyAdapter(Context context, List<Book> mData) {
         this.context = context;
@@ -34,6 +35,26 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
         View view;
         LayoutInflater mInflator = LayoutInflater.from(context);
         view = mInflator.inflate(R.layout.card_item,parent,false);
+//        interstitialAd = new InterstitialAd(context);
+//        interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+//        interstitialAd.loadAd(new AdRequest.Builder().addTestDevice("B71D897C6FB5FFEC8184442E74C7E952").build());
+//        interstitialAd.setAdListener(new AdListener() {
+//            @Override
+//            public void onAdClosed() {
+//                // Load the next interstitial.
+//
+//                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
+//                final String s1 = pref.getString("mykey","n/a");
+//                Intent intent = new Intent(context, PlayerActivity.class);
+//                intent.putExtra("key", s1);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                // intent.putExtra("key",mData.get(position).getTitle());
+//                context.startActivity(intent);
+//
+//               interstitialAd.loadAd(new AdRequest.Builder().addTestDevice("B71D897C6FB5FFEC8184442E74C7E952").build());
+//            }
+//
+//        });
         return new MyViewHolder(view);
     }
 
@@ -43,17 +64,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
         holder.mImageView.setImageResource(mData.get(position).getImage());
         holder.mTextview.setText(mData.get(position).getTitle());
 
-//        holder.mCardview.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-////                Intent intent = new Intent(mContext,PlayerActivity.class);
-////                intent.putExtra("key",holder.mTextview.getText().toString());
-////               // intent.putExtra("key",mData.get(position).getTitle());
-////                mContext.startActivity(intent);
-//
-//            }
-//        });
 
     }
 
@@ -89,12 +99,28 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
             mCardview.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    String value = mTextview.getText().toString();
-                    Intent intent = new Intent(context,PlayerActivity.class);
-                    intent.putExtra("key",value);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    // intent.putExtra("key",mData.get(position).getTitle());
-                    context.startActivity(intent);
+//
+//                    if (interstitialAd.isLoaded()) {
+//
+//                        interstitialAd.show();
+//                        String value = mTextview.getText().toString();
+//                        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+//                        SharedPreferences.Editor editor = prefs.edit();
+//                        editor.putString("mykey", value);
+//                        editor.apply();
+//
+//                    } else {
+
+                        String value = mTextview.getText().toString();
+                        Intent intent = new Intent(context, PlayerActivity.class);
+                        intent.putExtra("key", value);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        // intent.putExtra("key",mData.get(position).getTitle());
+                        context.startActivity(intent);
+
+            //        }
+
+
                 }
             });
         }

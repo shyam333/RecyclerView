@@ -17,7 +17,6 @@
 package com.abiramiaudio.recyclerview;
 
 import android.content.Intent;
-import android.widget.Toast;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -38,8 +37,8 @@ public abstract class YouTubeFailureRecoveryActivity extends YouTubeBaseActivity
     if (errorReason.isUserRecoverableError()) {
       errorReason.getErrorDialog(this, RECOVERY_DIALOG_REQUEST).show();
     } else {
-      String errorMessage = String.format(getString(R.string.error_player), errorReason.toString());
-      Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
+      //String errorMessage = String.format(getString(R.string.error_player), errorReason.toString());
+     // Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
     }
   }
 
